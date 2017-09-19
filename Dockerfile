@@ -5,14 +5,15 @@ MAINTAINER The GAP Group <support@gap-system.org>
 RUN    cd /home/gap/inst/ \
     && rm -rf gap4r8 \
     && wget -q https://github.com/gap-system/gap/archive/master.zip \
-    && unzip -q master.zip
-    && rm master.zip
-    && cd gap-master
-    && ./autogen.sh
-    && ./configure
-    && make 
-    && cd pkg
-    %% wget -q https://www.gap-system.org/pub/gap/gap4pkgs/packages-master.tar.gz
+    && unzip -q master.zip \
+    && rm master.zip \
+    && cd gap-master \
+    && ./autogen.sh \
+    && ./configure \
+    && make \
+    && mkdir pkg \
+    && cd pkg \
+    && wget -q https://www.gap-system.org/pub/gap/gap4pkgs/packages-master.tar.gz \
     && tar xzf packages-master.tar.gz \
     && rm packages-master.tar.gz \
     && ../bin/BuildPackages.sh
