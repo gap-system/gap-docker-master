@@ -8,7 +8,9 @@ RUN    sudo apt-get update -qq \
                                    # for ANUPQ package to build in 32-bit mode
                                    gcc-multilib \
                                    # for ZeroMQ package
-                                   libzmq3-dev python3-pip
+                                   libzmq3-dev \
+                                   # for Jupyter
+                                   python3-pip
 
 RUN sudo pip3 install notebook jupyterlab_launcher jupyterlab traitlets ipython vdom
 
@@ -32,7 +34,6 @@ RUN    cd /home/gap/inst/ \
     && python3 setup.py install --user
 
 RUN jupyter serverextension enable --py jupyterlab --user
-
 
 ENV PATH /home/gap/inst/gap-master/pkg/JupyterKernel/bin:${PATH}
 ENV JUPYTER_GAP_EXECUTABLE /home/gap/inst/gap-master/bin/gap.sh
