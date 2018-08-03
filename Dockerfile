@@ -8,7 +8,9 @@ RUN    sudo apt-get update -qq \
                                    # for ANUPQ package to build in 32-bit mode
                                    gcc-multilib \
                                    # for ZeroMQ package
-                                   libzmq3-dev python3-pip
+                                   libzmq3-dev \
+                                   # for Jupyter
+                                   python3-pip
 
 RUN sudo pip3 install notebook jupyterlab_launcher jupyterlab traitlets ipython vdom
 
@@ -27,8 +29,7 @@ RUN    cd /home/gap/inst/ \
     && tar xzf packages-master.tar.gz \
     && rm packages-master.tar.gz \
     && ../bin/BuildPackages.sh \
-    && git clone https://github.com/gap-packages/JupyterKernel.git \
-    && cd JupyterKernel \
+    && cd JupyterKernel-* \
     && python3 setup.py install --user
 
 RUN jupyter serverextension enable --py jupyterlab --user
@@ -56,7 +57,7 @@ RUN     cd /home/gap/inst/gap-master/pkg \
     &&  jupyter nbextension install /home/gap/inst/gap-master/pkg/francy/extensions/jupyter/jupyter_francy/jupyter_francy --user \
     &&  jupyter nbextension enable jupyter_francy/extension --user
 
-ENV PATH /home/gap/inst/gap-master/pkg/JupyterKernel/bin:${PATH}
+ENV PATH /home/gap/inst/gap-master/pkg/JupyterKernel-*/bin:${PATH}
 ENV JUPYTER_GAP_EXECUTABLE /home/gap/inst/gap-master/bin/gap.sh
 
 # Set up new user and home directory in environment.
