@@ -9,6 +9,8 @@ RUN    sudo apt-get update -qq \
                                    gcc-multilib \
                                    # for ZeroMQ package
                                    libzmq3-dev \
+                                   # for curlInterface
+                                   libcurl4-openssl-dev \
                                    # for Jupyter
                                    python3-pip
 
