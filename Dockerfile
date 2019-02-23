@@ -11,6 +11,8 @@ RUN    sudo apt-get update -qq \
                                    libzmq3-dev \
                                    # for curlInterface
                                    libcurl4-openssl-dev \
+                                   # for polymake
+                                   polymake
                                    # for Jupyter
                                    python3-pip
 
