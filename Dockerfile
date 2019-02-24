@@ -12,7 +12,7 @@ RUN    sudo apt-get update -qq \
                                    # for curlInterface
                                    libcurl4-openssl-dev \
                                    # for polymake
-                                   polymake
+                                   polymake \
                                    # for Jupyter
                                    python3-pip
 
