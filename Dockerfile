@@ -14,6 +14,8 @@ RUN    sudo apt-get update -qq \
                                    # for polymake
                                    polymake \
                                    libpolymake-dev \
+                                   libxml2 \
+                                   libxml2-dev \
                                    # for Jupyter
                                    python3-pip
 
