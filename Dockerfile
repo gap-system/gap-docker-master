@@ -4,6 +4,7 @@ MAINTAINER The GAP Group <support@gap-system.org>
 
 # Prerequirements
 RUN    sudo apt-get update -qq \
+    && sudo apt-get -qq install -y apt-utils \
     && sudo apt-get -qq install -y \
                                    # for ANUPQ package to build in 32-bit mode
                                    gcc-multilib \
