@@ -11,6 +11,8 @@ RUN    sudo apt-get update -qq \
                                    libzmq3-dev \
                                    # for curlInterface
                                    libcurl4-openssl-dev \
+                                   # for PackageManager
+                                   mercurial \
                                    # for polymake - commenting it out explained in 
                                    # https://github.com/gap-system/gap-docker/issues/17
                                    # polymake \
