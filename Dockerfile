@@ -11,6 +11,7 @@ RUN    mkdir /home/gap/inst/ \
     && ./autogen.sh \
     && ./configure \
     && make \
+    && cp bin/gap.sh bin/gap \
     && mkdir pkg \
     && cd pkg \
     && wget -q https://www.gap-system.org/pub/gap/gap4pkgs/packages-master.tar.gz \
@@ -33,7 +34,7 @@ ENV JUPYTER_GAP_EXECUTABLE /home/gap/inst/gap-master/bin/gap.sh
 USER gap
 ENV HOME /home/gap
 ENV GAP_HOME /home/gap/inst/gap-master
-ENV PATH ${GAP_HOME}:${PATH}
+ENV PATH ${GAP_HOME}/bin:${PATH}
 
 # Start at $HOME.
 WORKDIR /home/gap
