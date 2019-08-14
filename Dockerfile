@@ -2,28 +2,6 @@ FROM gapsystem/gap-docker-base
 
 MAINTAINER The GAP Group <support@gap-system.org>
 
-# Prerequirements
-RUN    sudo apt-get update -qq \
-    && sudo apt-get -qq install -y \
-                                   # for ANUPQ package to build in 32-bit mode
-                                   gcc-multilib \
-                                   # for ZeroMQ package
-                                   libzmq3-dev \
-                                   # for curlInterface
-                                   libcurl4-openssl-dev \
-                                   # for PackageManager
-                                   mercurial \
-                                   # for polymake - commenting it out explained in 
-                                   # https://github.com/gap-system/gap-docker/issues/17
-                                   # polymake \
-                                   # libpolymake-dev \
-                                   # libxml2 \
-                                   # libxml2-dev \
-                                   # for Jupyter
-                                   python3-pip
-
-RUN sudo pip3 install notebook jupyterlab_launcher jupyterlab traitlets ipython vdom
-
 RUN    mkdir /home/gap/inst/ \
     && cd /home/gap/inst/ \
     && wget -q https://github.com/gap-system/gap/archive/master.zip \
