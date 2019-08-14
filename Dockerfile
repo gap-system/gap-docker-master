@@ -24,7 +24,8 @@ RUN    sudo apt-get update -qq \
 
 RUN sudo pip3 install notebook jupyterlab_launcher jupyterlab traitlets ipython vdom
 
-RUN    cd /home/gap/inst/ \
+RUN    mkdir /home/gap/inst/ \
+    && cd /home/gap/inst/ \
     && wget -q https://github.com/gap-system/gap/archive/master.zip \
     && unzip -q master.zip \
     && rm master.zip \
