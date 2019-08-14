@@ -20,3 +20,7 @@ Note that you may have to run `docker` with `sudo`, particularly if you are
 on Ubuntu.
 
 The location of GAP in the container is `/home/gap/inst/gap-master`.
+
+For more details (e.g. on how to access GAP running in this Docker container from a
+Jupyter notebook in your browser) see the readme of https://github.com/gap-system/gap-docker
+and simply replace `gap-docker` by `gap-docker-master`.
