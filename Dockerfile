@@ -2,30 +2,8 @@ FROM gapsystem/gap-docker-base
 
 MAINTAINER The GAP Group <support@gap-system.org>
 
-# Prerequirements
-RUN    sudo apt-get update -qq \
-    && sudo apt-get -qq install -y \
-                                   # for ANUPQ package to build in 32-bit mode
-                                   gcc-multilib \
-                                   # for ZeroMQ package
-                                   libzmq3-dev \
-                                   # for curlInterface
-                                   libcurl4-openssl-dev \
-                                   # for PackageManager
-                                   mercurial \
-                                   # for polymake - commenting it out explained in 
-                                   # https://github.com/gap-system/gap-docker/issues/17
-                                   # polymake \
-                                   # libpolymake-dev \
-                                   # libxml2 \
-                                   # libxml2-dev \
-                                   # for Jupyter
-                                   python3-pip
-
-RUN sudo pip3 install notebook jupyterlab_launcher jupyterlab traitlets ipython vdom
-
-RUN    cd /home/gap/inst/ \
-    && rm -rf gap-4.9.1 \
+RUN    mkdir /home/gap/inst/ \
+    && cd /home/gap/inst/ \
     && wget -q https://github.com/gap-system/gap/archive/master.zip \
     && unzip -q master.zip \
     && rm master.zip \
@@ -33,6 +11,7 @@ RUN    cd /home/gap/inst/ \
     && ./autogen.sh \
     && ./configure \
     && make \
+    && cp bin/gap.sh bin/gap \
     && mkdir pkg \
     && cd pkg \
     && wget -q https://www.gap-system.org/pub/gap/gap4pkgs/packages-master.tar.gz \
@@ -49,16 +28,5 @@ RUN jupyter serverextension enable --py jupyterlab --user
 ENV PATH /home/gap/inst/gap-master/pkg/JupyterKernel/bin:${PATH}
 ENV JUPYTER_GAP_EXECUTABLE /home/gap/inst/gap-master/bin/gap.sh
 
-# Set up new user and home directory in environment.
-# Note that WORKDIR will not expand environment variables in docker versions < 1.3.1.
-# See docker issue 2637: https://github.com/docker/docker/issues/2637
-USER gap
-ENV HOME /home/gap
 ENV GAP_HOME /home/gap/inst/gap-master
-ENV PATH ${GAP_HOME}:${PATH}
-
-# Start at $HOME.
-WORKDIR /home/gap
-
-# Start from a BASH shell.
-CMD ["bash"]
+ENV PATH ${GAP_HOME}/bin:${PATH}
