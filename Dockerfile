@@ -7,7 +7,7 @@ ENV GAP_BRANCH=master
 # download and build GAP
 RUN    mkdir /home/gap/inst/ \
     && cd /home/gap/inst/ \
-    && curl https://github.com/gap-system/gap/archive/${GAP_BRANCH}.tar.gz | tar xz \
+    && git clone --depth=1 -b ${GAP_BRANCH} https://github.com/gap-system/gap gap-${GAP_BRANCH} \
     && cd gap-${GAP_BRANCH} \
     && ./autogen.sh \
     && ./configure \
