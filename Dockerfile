@@ -15,13 +15,13 @@ RUN    mkdir /home/gap/inst/ \
     && cp bin/gap.sh bin/gap
 
 # download and build GAP packages
-RUN    mkdir /home/gap/inst/pkg \
-    && cd /home/gap/inst/pkg \
+RUN    mkdir /home/gap/inst/gap-${GAP_BRANCH}/pkg \
+    && cd /home/gap/inst/gap-${GAP_BRANCH}/pkg \
     && curl https://www.gap-system.org/pub/gap/gap4pkgs/packages-${GAP_BRANCH}.tar.gz | tar xz \
     && ../bin/BuildPackages.sh
 
 # build JupyterKernel
-RUN    cd /home/gap/inst/pkg \
+RUN    cd /home/gap/inst/gap-${GAP_BRANCH}/pkg \
     && mv JupyterKernel-* JupyterKernel \
     && cd JupyterKernel \
     && python3 setup.py install --user
