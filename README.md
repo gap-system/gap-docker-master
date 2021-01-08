@@ -1,10 +1,13 @@
 # Docker container for GAP development version
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/gap-system/gap-docker-master/master)
+
 DockerHub entry: https://registry.hub.docker.com/u/gapsystem/gap-docker-master/
 
 This container provides the core GAP system build from the `master` branch
 of the [GAP repository](https://github.com/gap-system) and GAP packages
 prepared for the next major release of GAP.
+You can try it on mybinder.org via the "launch binder" badge above.
 
 If you have installed [Docker](https://www.docker.com/), to use this
 container first you need to download it using
