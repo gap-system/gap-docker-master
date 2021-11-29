@@ -24,7 +24,7 @@ RUN    mkdir /home/gap/inst/gap-${GAP_BRANCH}/pkg \
 RUN    cd /home/gap/inst/gap-${GAP_BRANCH}/pkg \
     && mv JupyterKernel-* JupyterKernel \
     && cd JupyterKernel \
-    && python3 setup.py install --user
+    && pip3 install . --user
 
 RUN jupyter serverextension enable --py jupyterlab --user
 
