@@ -17,7 +17,8 @@ RUN    mkdir /home/gap/inst/ \
 # download and build GAP packages
 RUN    mkdir /home/gap/inst/gap-${GAP_BRANCH}/pkg \
     && cd /home/gap/inst/gap-${GAP_BRANCH}/pkg \
-    && curl https://files.gap-system.org/gap4pkgs/packages-${GAP_BRANCH}.tar.gz | tar xz \
+    && wget -q https://files.gap-system.org/gap4pkgs/packages-${GAP_BRANCH}.tar.gz \
+    && tar xzf packages-${GAP_BRANCH}.tar.gz \
     && ../bin/BuildPackages.sh
 
 # build JupyterKernel
